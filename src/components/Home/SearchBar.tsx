@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import CategoryDropdown from "./CategoryDropdown";

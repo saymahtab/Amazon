@@ -1,13 +1,14 @@
-//@ts-nocheck
 "use client";
 import { categoryList } from "@/data/products";
-import { noSSR } from "next/dynamic";
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function CategoryFilter({
   setSelectedCategories,
   selectedCategories,
+}: {
+  selectedCategories: string[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export default function CategoryFilter({
       }
       router.push(url);
     }
-  }, [selectedCategories, pathname]);
+  }, [selectedCategories, pathname, router]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>

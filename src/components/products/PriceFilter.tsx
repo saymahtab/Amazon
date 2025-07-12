@@ -53,7 +53,7 @@ export default function PriceFilter({
         document.removeEventListener("mouseup", handleMouseUp);
       };
     }
-  }, [isDragging]);
+  }, [isDragging, handleMouseMove]);
 
   return (
     <div className="w-full max-w-md mx-auto p-2 bg-white">
