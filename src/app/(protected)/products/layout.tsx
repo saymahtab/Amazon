@@ -1,9 +1,10 @@
 //@ts-nocheck
 "use client";
+import Loading from "@/components/common/Loading";
 import CategoryFilter from "@/components/products/CategoryFilter";
 import PriceFilter from "@/components/products/PriceFilter";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 export default function Productlayout({
   children,

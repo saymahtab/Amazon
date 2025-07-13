@@ -3,20 +3,18 @@ import {
   Categories,
   categoryColors,
   categoryTitles,
-  products,
 } from "@/data/products";
 import CategoryBox from "./CategoryBox";
 import Card from "./Card";
 import { HeroSlider } from "./HeroSlider";
 import Link from "next/link";
 
-export default function HeroSection() {
-  const beautyProducts = products.filter((p) => p.category === "beauty");
-  const furnitureProducts = products.filter((p) => p.category === "furniture");
-  const fragrancesProducts = products.filter(
-    (p) => p.category === "fragrances"
-  );
-  const groceriesProducts = products.filter((p) => p.category === "groceries");
+export default async function HeroSection() {
+  
+  const response = await fetch('http://dummyjson.com/products?limit=20');
+  const data = await response.json();
+
+  const products = data?.products || []
 
   return (
     <div className="flex flex-wrap items-start justify-center w-full gap-5 md:gap-6 relative">

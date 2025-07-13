@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Star, StarHalf, Share2, Heart, Truck, Shield, CreditCard, Package } from 'lucide-react';
 import { products } from '@/data/products';
+import Link from 'next/link';
 
 export default function ProductDetails({ params }: { params: { id: string } }) {
   const productId = parseInt(params.id);
@@ -60,9 +61,9 @@ export default function ProductDetails({ params }: { params: { id: string } }) {
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-600 mb-4">
-          <span className="hover:text-blue-600 cursor-pointer">Home</span>
+          <Link href='/' className="hover:text-blue-600 cursor-pointer">Home</Link>
           <span className="mx-2">›</span>
-          <span className="hover:text-blue-600 cursor-pointer capitalize">{product.category}</span>
+          <Link href={`/products?category=${product.category}`} className="hover:text-blue-600 cursor-pointer capitalize">{product.category}</Link>
           <span className="mx-2">›</span>
           <span className="text-gray-900">{product.title}</span>
         </nav>
