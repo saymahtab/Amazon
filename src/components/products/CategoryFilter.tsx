@@ -23,7 +23,7 @@ export default function CategoryFilter({
     }
   }, [selectedCategories, pathname, router]);
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
         ? prev.filter((c) => c !== category)

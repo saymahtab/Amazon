@@ -1,11 +1,27 @@
-//@ts-nocheck
 "use client";
 
-export default function AddToCart({ product }) {
-  const handleClick = () => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  rating: number;
+  brand: string;
+  category: string;
+  availabilityStatus: string;
+  discountPercentage: number;
+}
 
-    const found = existingCart.find((item) => item.id === product.id);
+interface CartItem extends Product {
+  quantity: number;
+}
+
+export default function AddToCart({ product }: { product: Product }) {
+  const handleClick = () => {
+    const savedCartData = localStorage.getItem("cart");
+    const existingCart = savedCartData ? JSON.parse(savedCartData) : [];
+
+    const found = existingCart.find((item: CartItem) => item.id === product.id);
 
     if (found) {
       found.quantity += 1;

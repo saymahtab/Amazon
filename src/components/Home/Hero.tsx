@@ -1,20 +1,26 @@
-//@ts-nocheck
-import {
-  Categories,
-  categoryColors,
-  categoryTitles,
-} from "@/data/products";
+import { Categories, categoryColors, categoryTitles } from "@/data/products";
 import CategoryBox from "./CategoryBox";
 import Card from "./Card";
 import { HeroSlider } from "./HeroSlider";
 import Link from "next/link";
 
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  rating: number;
+  brand: string;
+  category: string;
+  availabilityStatus: string;
+  discountPercentage: number;
+}
+
 export default async function HeroSection() {
-  
-  const response = await fetch('http://dummyjson.com/products?limit=20');
+  const response = await fetch("http://dummyjson.com/products?limit=20");
   const data = await response.json();
 
-  const products = data?.products || []
+  const products = data?.products || [];
 
   return (
     <div className="flex flex-wrap items-start justify-center w-full gap-5 md:gap-6 relative">
@@ -26,7 +32,7 @@ export default async function HeroSection() {
             key={index}
             title={categoryTitles[index]}
             category={category}
-            bgColor={categoryColors[category]}
+            bgColor={categoryColors[category as keyof typeof categoryColors]}
           />
         ))}
       </div>
@@ -61,7 +67,7 @@ export default async function HeroSection() {
         {/* Horizontal scrollable container */}
         <div className="w-full relative">
           <div className="flex gap-2 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {products.map((product) => (
+            {products.map((product: Product) => (
               <div
                 key={product.id}
                 className="flex-none w-full sm:w-56 md:w-64 lg:w-72 snap-start"

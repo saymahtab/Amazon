@@ -13,15 +13,15 @@ export default function CategoryDropdown() {
   const [selected, setSelected] = useState("All");
 
   useEffect(() => {
-  if (!category) {
-    setSelected("All");
-  } else {
-    const firstCategory = category.split(",")[0];
-    setSelected(firstCategory);
-  }
-}, [category]);
+    if (!category) {
+      setSelected("All");
+    } else {
+      const firstCategory = category.split(",")[0];
+      setSelected(firstCategory);
+    }
+  }, [category]);
   const [width, setWidth] = useState(100); // initial width in px
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
 
@@ -34,10 +34,10 @@ export default function CategoryDropdown() {
 
   // Close on outside click
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target)
+        !containerRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }

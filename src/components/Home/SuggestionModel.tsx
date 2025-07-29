@@ -21,7 +21,7 @@ export default function SuggestionModel() {
     }
   }, [category]);
   const [width, setWidth] = useState(100); // initial width in px
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
 
@@ -34,10 +34,10 @@ export default function SuggestionModel() {
 
   // Close on outside click
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target)
+        !containerRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }

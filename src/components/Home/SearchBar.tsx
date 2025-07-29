@@ -9,7 +9,7 @@ export default function SearchBar() {
   const [inputText, setInputText] = useState("");
   const [isFocused, setIsFocused] = useState(false); // Track focus state
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/products/?search=${inputText}`);
     setIsFocused(false);
@@ -30,13 +30,13 @@ export default function SearchBar() {
         onSubmit={handleSubmit}
         className="hidden sm:flex w-1/2 items-center z-20 relative border-3 rounded-md border-transparent focus-within:border-amber-500 transition duration-100 "
       >
-        <CategoryDropdown  />
+        <CategoryDropdown />
 
         <input
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)} // slight delay so user can click search
           value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
           type="text"
           placeholder="Search Amazon.in"
           className="bg-white text-black py-2 px-3 w-full outline-none"

@@ -1,29 +1,36 @@
-//@ts-nocheck
 "use client";
 import { useState, useRef, useEffect } from "react";
+
+interface PriceFilterProps {
+  minPrice: number;
+  maxPrice: number;
+  setMinPrice: (price: number) => void;
+  setMaxPrice: (price: number) => void;
+  handleGo: () => void;
+}
 
 export default function PriceFilter({
   minPrice,
   maxPrice,
   setMinPrice,
   setMaxPrice,
-  handleGo
-}) {
-  const [isDragging, setIsDragging] = useState(null);
+  handleGo,
+}: PriceFilterProps) {
+  const [isDragging, setIsDragging] = useState<string | null>(null);
 
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
   const minValue = 0;
   const maxValue = 100;
 
-  const getPercentage = (value) => {
+  const getPercentage = (value: number) => {
     return ((value - minValue) / (maxValue - minValue)) * 100;
   };
 
-  const handleMouseDown = (type) => {
+  const handleMouseDown = (type: string) => {
     setIsDragging(type);
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging || !sliderRef.current) return;
 
     const rect = sliderRef.current.getBoundingClientRect();
