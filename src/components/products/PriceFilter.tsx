@@ -30,29 +30,26 @@ export default function PriceFilter({
     setIsDragging(type);
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !sliderRef.current) return;
-
-    const rect = sliderRef.current.getBoundingClientRect();
-    const percentage = Math.min(
-      Math.max(0, (e.clientX - rect.left) / rect.width),
-      1
-    );
-    const value = Math.round(minValue + percentage * (maxValue - minValue));
-
-    if (isDragging === "min") {
-      setMinPrice(Math.min(value, maxPrice - 1)); // gap of $1
-    } else if (isDragging === "max") {
-      setMaxPrice(Math.max(value, minPrice + 1));
-    }
-  };
-
   const handleMouseUp = () => {
     setIsDragging(null);
   };
 
   useEffect(() => {
     if (isDragging) {
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!isDragging || !sliderRef.current) return;
+        const rect = sliderRef.current.getBoundingClientRect();
+        const percentage = Math.min(
+          Math.max(0, (e.clientX - rect.left) / rect.width),
+          1
+        );
+        const value = Math.round(minValue + percentage * (maxValue - minValue));
+        if (isDragging === "min") {
+          setMinPrice(Math.min(value, maxPrice - 1)); // gap of $1
+        } else if (isDragging === "max") {
+          setMaxPrice(Math.max(value, minPrice + 1));
+        }
+      };
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
       return () => {
@@ -60,7 +57,15 @@ export default function PriceFilter({
         document.removeEventListener("mouseup", handleMouseUp);
       };
     }
-  }, [isDragging, handleMouseMove]);
+  }, [
+    isDragging,
+    minPrice,
+    maxPrice,
+    minValue,
+    maxValue,
+    setMinPrice,
+    setMaxPrice,
+  ]);
 
   return (
     <div className="w-full max-w-md mx-auto p-2 bg-white">
