@@ -1,7 +1,7 @@
 export default function LoginModel() {
   return (
     <div>
-      Login Preview
+      Login Intercepted 
     </div>
   )
 }

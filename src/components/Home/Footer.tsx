@@ -58,7 +58,7 @@ export default function Footer() {
       {/* Logo & language */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-5">
         <img
-          src="https://www.pngall.com/wp-content/uploads/15/Amazon-Logo-White-Transparent.png"
+          src="/merazon.png"
           alt="Amazon Logo"
           width={80}
           height={80}
