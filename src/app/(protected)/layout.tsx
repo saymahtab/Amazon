@@ -1,7 +1,6 @@
 import Footer from "@/components/Home/Footer";
 import Header from "@/components/Home/Header";
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Online Shopping site in India",

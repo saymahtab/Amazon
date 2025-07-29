@@ -2,7 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "./AddToCart";
 
-export default function Card({ product }: any) {
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  brand: string;
+  availabilityStatus: string;
+  thumbnail: string;
+  category: string;
+}
+
+export default function Card({ product }: { product: Product }) {
   return (
     <div className="flex flex-col w-full h-[28rem] overflow-hidden bg-white border border-gray-200 relative">
       <Link href={`/products/${product.id}`}>
@@ -51,7 +64,7 @@ export default function Card({ product }: any) {
           </p>
         </div>
       </Link>
-      
+
       <AddToCart product={product} />
     </div>
   );

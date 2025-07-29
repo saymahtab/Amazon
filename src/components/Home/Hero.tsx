@@ -14,6 +14,7 @@ interface Product {
   category: string;
   availabilityStatus: string;
   discountPercentage: number;
+  description: string;
 }
 
 export default async function HeroSection() {

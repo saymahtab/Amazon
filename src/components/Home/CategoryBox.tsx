@@ -1,7 +1,13 @@
-// components/CategoryBox.tsx
 import { products } from "@/data/products";
 import Image from "next/image";
 import Link from "next/link";
+
+interface Product {
+  id: number;
+  title: string;
+  thumbnail: string;
+  category: string;
+}
 
 export default function CategoryBox({
   title,
@@ -12,16 +18,20 @@ export default function CategoryBox({
   category: string;
   bgColor: string;
 }) {
-
-
-  const productsArray: any[] = products.filter((p) => p.category === category);
+  const productsArray: Product[] = products.filter(
+    (p) => p.category === category
+  );
 
   return (
     <div className="flex flex-col gap-3 w-full sm:w-[48%] lg:w-[23%] justify-start bg-white p-4">
       <p className="font-semibold text-base md:text-lg lg:text-xl">{title}</p>
       <div className="flex flex-wrap gap-3 items-start">
         {productsArray.slice(0, 4).map((product) => (
-          <Link href={`/products?category=${category}`} key={product.id} className="flex flex-col items-start cursor-pointer">
+          <Link
+            href={`/products?category=${category}`}
+            key={product.id}
+            className="flex flex-col items-start cursor-pointer"
+          >
             <div className={`${bgColor} overflow-hidden`}>
               <Image
                 height={120}

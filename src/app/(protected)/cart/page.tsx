@@ -13,7 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-interface CartItem {
+interface CartItem {  
   id: number;
   title: string;
   price: number;
@@ -108,7 +108,7 @@ export default function Cart() {
               href="/products"
               className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-6 rounded-full transition-colors"
             >
-              Shop today's deals
+              Shop today&apos;s deals
             </Link>
           </div>
         </div>
